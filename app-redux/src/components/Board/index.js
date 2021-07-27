@@ -1,54 +1,40 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Square from '../Square';
+import Square from '../Square'
 
 /**
- * A board for the game of tic-tac-toe.  A 3x3 square.
+ * A board for the game of tic-tac-toe.  A 3x3 square using react hook.
  */
-class Board extends React.Component {
-    renderSquare(i) {
-        return (
-            <Square
-                value={this.props.squares[i]}
-                onClick={() => this.props.onClick(i)}
-            />
-        );
-    }
+function Board({ squares, onClick }) {
+  const renderSquare = (i) => {
+    return <Square value={squares[i]} onClick={() => onClick(i)} />
+  }
 
-    render() {
-        return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-            </div>
-        );
-    }
+  return (
+    <div>
+      <div className="board-row">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
+      </div>
+      <div className="board-row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+    </div>
+  )
 }
 
 Board.propTypes = {
-    /**
-     *  The 1..9 array of squares to display
-     */
-    squares: PropTypes.array.isRequired,
+  squares: PropTypes.array.isRequired,
+  onClick: PropTypes.func,
+}
 
-    /**
-     *  The handler for when a square is clicked
-     */
-    onClick: PropTypes.func
-};
-
-export default Board;
+export default Board
